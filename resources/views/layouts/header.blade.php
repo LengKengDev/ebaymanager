@@ -30,6 +30,11 @@
                             </a>
                         </li>
                         <li>
+                            <a href="{{url()->route("accounts.index")}}">
+                                <i class="fa fa-id-card-o fa-fw"></i> Accounts
+                            </a>
+                        </li>
+                        <li>
                             <a href="#">
                                 <i class="fa fa-users fa-fw"></i> Users
                             </a>
