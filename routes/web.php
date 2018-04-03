@@ -19,6 +19,11 @@ Route::resource("/accounts", "AccountsController", [
     "only" => ["index", "store", "edit", "update", "destroy"]
 ]);
 
+Route::resource("/users", "UsersController", [
+    "only" => ["index", "show", "create", "store", "edit", "update", "destroy"]
+]);
+
 Route::namespace('Api')->prefix("api")->name("api.")->group(function () {
     Route::resource("accounts", "AccountsController", ["only" => ["index"]]);
+    Route::resource("users", "UsersController", ["only" => ["index"]]);
 });

@@ -35,7 +35,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="{{url()->route("users.index")}}">
                                 <i class="fa fa-users fa-fw"></i> Users
                             </a>
                         </li>
