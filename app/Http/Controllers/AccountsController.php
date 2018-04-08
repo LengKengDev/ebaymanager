@@ -15,8 +15,7 @@ class AccountsController extends Controller
      */
     public function index()
     {
-        $accounts = Account::paginate(10);
-        return view('accounts.index', ["accounts" => $accounts]);
+        return view('accounts.index');
     }
 
     /**
@@ -38,7 +37,7 @@ class AccountsController extends Controller
 
         $account = Account::create(["name" => $request->input("name")]);
 
-        return redirect()->route("accounts")
+        return redirect()->route("accounts.index")
                 ->with("status", __("Account `:account` has been created", ["account" => $account->name]));
     }
 

@@ -21,3 +21,14 @@
 .content {
   margin-top: 95px;
 }
+
+table#order {
+  td.details-control {
+    padding: 0 10px;
+    background: url('/images/vendor/datatables/details_open.png') no-repeat center center;
+    cursor: pointer;
+  }
+  tr.details td.details-control {
+    background: url('/images/vendor/datatables/details_close.png') no-repeat center center;
+  }
+}

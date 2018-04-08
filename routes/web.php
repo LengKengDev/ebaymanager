@@ -23,7 +23,16 @@ Route::resource("/users", "UsersController", [
     "only" => ["index", "show", "create", "store", "edit", "update", "destroy"]
 ]);
 
+Route::resource("/orders", "OrdersController", [
+    "only" => ["index", "show", "create", "store", "edit", "update", "destroy"]
+]);
+
+Route::resource("/import", "ImportController", [
+    "only" => ["create", "store"]
+]);
+
 Route::namespace('Api')->prefix("api")->name("api.")->group(function () {
     Route::resource("accounts", "AccountsController", ["only" => ["index"]]);
     Route::resource("users", "UsersController", ["only" => ["index"]]);
+    Route::resource("orders", "OrdersController", ["only" => ["index"]]);
 });

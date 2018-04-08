@@ -23,7 +23,8 @@ class CreateOrdersTable extends Migration
             $table->string('tracking')->nullable();
             $table->string('status')->default('order_new');
             $table->dateTime('last_update')->nullable();
-            $table->float('price')->default(0);
+            $table->double('price')->default(0);
+            $table->text('note')->nullable();
             $table->timestamps();
         });
     }

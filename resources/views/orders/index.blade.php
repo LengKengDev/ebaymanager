@@ -1,9 +1,9 @@
 @extends('layouts.layout')
-@section("title", "Dashboard")
+@section("title", "Orders")
 @section('content')
     <div class="row">
         <div class="col-sm-12">
-            {{ Breadcrumbs::render('dashboard') }}
+            {{ Breadcrumbs::render('orders') }}
         </div>
         <div class="row">
             <div class="col-sm-12">
@@ -16,7 +16,7 @@
                     <h3 class="panel-title">Analysts</h3>
                 </div>
                 <div class="panel-body">
-                    <table class="table table-hover table-responsive table-bordered table-striped">
+                    <table class="table table-hover table-responsive ">
                         <thead>
                             <tr>
                                 <td>Total orders</td>
@@ -40,7 +40,7 @@
         <div class="col-sm-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Dashboard</h3>
+                    <h3 class="panel-title">Orders</h3>
                 </div>
                 <div class="panel-body">
                     @include('orders._orders')
@@ -65,21 +65,6 @@
                     '<i class="fa fa-fw fa-newspaper-o"></i> : Note</div><blockquote>' + (d.note == null ? '' : d.note.toString().replace(/\n/g, "<br />")) + "</blockquote>";
             }
 
-            $.fn.dataTable.render.ellipsis = function ( cutoff ) {
-                return function ( data, type, row ) {
-                    if ( type === 'display' ) {
-                        var str = data.toString(); // cast numbers
-
-                        return str.length < cutoff ?
-                            str :
-                            str.substr(0, cutoff-1) +'&#8230;';
-                    }
-
-                    // Search, order and type can use the original data
-                    return data;
-                };
-            };
-
             var dt = $('table#order').DataTable({
                 processing: true,
                 serverSide: true,
@@ -87,7 +72,7 @@
                 columns: [
                     {
                         "class":          "details-control",
-                        "orderable":      false,
+                        orderable:      false,
                         "data":           null,
                         "defaultContent": "",
                         searchable: false

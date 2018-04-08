@@ -25,8 +25,8 @@
                 @else
                     @if(Auth::user()->can("views_full"))
                         <li>
-                            <a href="#">
-                                <i class="fa fa-upload fa-fw"></i> Import
+                            <a href="{{url()->route("orders.index")}}">
+                                <i class="fa fa-shopping-cart fa-fw"></i> Orders
                             </a>
                         </li>
                         <li>
