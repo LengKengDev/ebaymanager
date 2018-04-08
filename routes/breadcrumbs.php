@@ -36,3 +36,26 @@ Breadcrumbs::register('users.create', function ($breadcrumbs) {
     $breadcrumbs->parent('users');
     $breadcrumbs->push("Create a new user", route('users.create'));
 });
+
+// Orders
+Breadcrumbs::register('orders', function ($breadcrumbs) {
+    $breadcrumbs->parent('dashboard');
+    $breadcrumbs->push('Orders', route('orders.index'));
+});
+
+
+Breadcrumbs::register('orders.create', function ($breadcrumbs) {
+    $breadcrumbs->parent('orders');
+    $breadcrumbs->push("Create a new order", route('orders.create'));
+});
+
+Breadcrumbs::register('orders.edit', function ($breadcrumbs) {
+    $breadcrumbs->parent('orders');
+    $breadcrumbs->push("Edit order");
+});
+
+// Import
+Breadcrumbs::register('import', function ($breadcrumbs) {
+    $breadcrumbs->parent('dashboard');
+    $breadcrumbs->push('Import', route('import.create'));
+});
