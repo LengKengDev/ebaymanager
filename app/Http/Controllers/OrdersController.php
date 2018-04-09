@@ -107,6 +107,9 @@ class OrdersController extends Controller
         $order->price = $request->input("price", $order->price);
         $order->tracking = $request->input("tracking", $order->tracking);
         $order->note = $request->input("note", $order->note);
+        $order->site = $request->input("site", "");
+        $order->email = $request->input("email", "");
+        $order->number = $request->input("number", "");
         $order->save();
 
         return back()->with("status", __("Order :id has been updated", ["id" => $order->id]));
