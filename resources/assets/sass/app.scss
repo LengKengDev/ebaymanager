@@ -3,7 +3,8 @@
 
 // DataTables
 @import "~datatables.net-bs/css/dataTables.bootstrap";
-
+// DataTables
+@import "~datatables.net-responsive-bs/css/responsive.bootstrap.min";
 // Font-awesome
 @import "~font-awesome/scss/font-awesome";
 
@@ -37,8 +38,13 @@ table#order {
   }
 }
 
-@media (min-width: 1650px) {
-  .container-fluid {
-    padding: 0 30px;
+.container-fluid {
+  padding: 0 35px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .panel-body {
+    padding: 0 5px;
   }
 }
+
