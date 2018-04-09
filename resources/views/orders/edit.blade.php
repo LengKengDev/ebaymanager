@@ -62,7 +62,7 @@
                             <label for="email" class="col-sm-4 control-label text-muted text-right">Buyer</label>
 
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="buyer" value="{{ $order->buyer }}" placeholder="Jonh Doe">
+                                <input type="text" class="form-control" name="buyer" value="{{ $order->buyer }}" placeholder="Jonh Doe" @if(Auth::user()->cannot('views_full')) disabled @endif>
                             </div>
                             <div class="col-sm-4">
                                 @if ($errors->has('buyer'))
@@ -91,7 +91,7 @@
                             <label for="email" class="col-sm-4 control-label text-muted text-right">Address</label>
 
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="address" value="{{ $order->address }}" placeholder="Address">
+                                <input type="text" class="form-control" name="address" value="{{ $order->address }}" placeholder="Address" @if(Auth::user()->cannot('views_full')) disabled @endif>
                             </div>
                             <div class="col-sm-4">
                                 @if ($errors->has('address'))
@@ -105,7 +105,21 @@
                             <label for="email" class="col-sm-4 control-label text-muted text-right">Item</label>
 
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="item" value="{{ $order->item }}" placeholder="Item name">
+                                <input type="text" class="form-control" name="item" value="{{ $order->item }}" placeholder="Item name" @if(Auth::user()->cannot('views_full')) disabled @endif>
+                            </div>
+                            <div class="col-sm-4">
+                                @if ($errors->has('item'))
+                                    <span class="help-block text-danger">
+                                        <strong>{{ $errors->first('item') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="col-sm-4 control-label text-muted text-right">Quantity</label>
+
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="quantity" value="{{ $order->quantity }}" placeholder="Item name" @if(Auth::user()->cannot('views_full')) disabled @endif>
                             </div>
                             <div class="col-sm-4">
                                 @if ($errors->has('item'))
@@ -122,7 +136,7 @@
                                 <div class="input-group">
                                     <span class="input-group-addon">$</span>
                                     <input type="text" class="form-control" name="price"
-                                           value="{{ $order->price }}" placeholder="price">
+                                           value="{{ $order->price }}" placeholder="price" @if(Auth::user()->cannot('views_full')) disabled @endif>
                                 </div>
                             </div>
                             <div class="col-sm-4">
@@ -144,6 +158,48 @@
                                 @if ($errors->has('tracking'))
                                     <span class="help-block text-danger">
                                         <strong>{{ $errors->first('tracking') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="col-sm-4 control-label text-muted text-right">Site order</label>
+
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="site" value="{{ $order->site }}" placeholder="http://...">
+                            </div>
+                            <div class="col-sm-4">
+                                @if ($errors->has('site'))
+                                    <span class="help-block text-danger">
+                                        <strong>{{ $errors->first('site') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="col-sm-4 control-label text-muted text-right">Email order</label>
+
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="email" value="{{ $order->email }}" placeholder="Email order">
+                            </div>
+                            <div class="col-sm-4">
+                                @if ($errors->has('email'))
+                                    <span class="help-block text-danger">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="col-sm-4 control-label text-muted text-right">Order number</label>
+
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="number" value="{{ $order->number }}" placeholder="Order number">
+                            </div>
+                            <div class="col-sm-4">
+                                @if ($errors->has('number'))
+                                    <span class="help-block text-danger">
+                                        <strong>{{ $errors->first('number') }}</strong>
                                     </span>
                                 @endif
                             </div>

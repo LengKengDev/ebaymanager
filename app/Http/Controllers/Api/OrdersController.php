@@ -32,6 +32,9 @@ class OrdersController extends Controller
             ->editColumn('tracking', function ($order) {
                 return "<a target='_new' href='https://www.packagetrackr.com/track/{$order->tracking}'>{$order->tracking}</a>";
             })
+            ->editColumn('note', function ($order) {
+                return "{$order->note} | {$order->site} | {$order->email} | {$order->number}";
+            })
             ->rawColumns(['action', 'item', 'note', 'tracking'])
             ->make();
     }

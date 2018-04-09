@@ -28,6 +28,9 @@ class CreateOrdersTable extends Migration
             $table->dateTime('last_update')->nullable();
             $table->double('price')->default(0);
             $table->text('note')->nullable();
+            $table->string('site')->nullable();
+            $table->string('email')->nullable();
+            $table->string('number')->nullable();
             $table->timestamps();
         });
     }

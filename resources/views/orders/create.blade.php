@@ -116,6 +116,20 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="email" class="col-sm-4 control-label text-muted text-right">Quantity</label>
+
+                            <div class="col-sm-4">
+                                <input type="number" class="form-control" name="quantity" value="{{ old("quantity") }}" placeholder="quantity">
+                            </div>
+                            <div class="col-sm-4">
+                                @if ($errors->has('quantity'))
+                                    <span class="help-block text-danger">
+                                        <strong>{{ $errors->first('quantity') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label for="email" class="col-sm-4 control-label text-muted text-right">Price</label>
 
                             <div class="col-sm-4">
@@ -142,6 +156,48 @@
                                 @if ($errors->has('tracking'))
                                     <span class="help-block text-danger">
                                         <strong>{{ $errors->first('tracking') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="col-sm-4 control-label text-muted text-right">Site order</label>
+
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="site" value="{{ old("site") }}" placeholder="http://...">
+                            </div>
+                            <div class="col-sm-4">
+                                @if ($errors->has('site'))
+                                    <span class="help-block text-danger">
+                                        <strong>{{ $errors->first('site') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="col-sm-4 control-label text-muted text-right">Email order</label>
+
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="email" value="{{ old("email") }}" placeholder="Email order">
+                            </div>
+                            <div class="col-sm-4">
+                                @if ($errors->has('email'))
+                                    <span class="help-block text-danger">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="col-sm-4 control-label text-muted text-right">Order number</label>
+
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="number" value="{{ old("number") }}" placeholder="Order number">
+                            </div>
+                            <div class="col-sm-4">
+                                @if ($errors->has('number'))
+                                    <span class="help-block text-danger">
+                                        <strong>{{ $errors->first('number') }}</strong>
                                     </span>
                                 @endif
                             </div>
