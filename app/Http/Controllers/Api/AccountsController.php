@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Account;
+use App\Http\Middleware\HasAdminRole;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -10,6 +11,16 @@ use DataTables;
 
 class AccountsController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->middleware([HasAdminRole::class]);
+    }
     /**
      * Display a listing of the resource.
      *

@@ -3,11 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Account;
+use App\Http\Middleware\HasAdminRole;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class AccountsController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->middleware([HasAdminRole::class]);
+    }
+
     /**
      * Display a listing of the resource.
      *

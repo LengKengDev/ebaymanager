@@ -47,8 +47,42 @@
                 </div>
                 @if(Auth::user()->can("views_full"))
                     <div class="panel-footer">
-                        <a href="{{url()->route("orders.create")}}" class="btn btn-primary"><i class="fa fa-user-plus fa-fw"></i> Create a new order</a>
-                        <a href="{{url()->route("import.create")}}" class="btn btn-success"><i class="fa fa-fw fa-upload"></i> Import Data</a>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <form action="{{url()->route("orders.assign")}}" method="POST" id="assign" class="form-horizontal">
+                                    {{csrf_field()}}
+                                    @method("PATCH")
+                                    <div class="form-group">
+                                        <label for="email" class="col-sm-4 control-label text-muted text-right">Assign for</label>
+
+                                        <div class="col-sm-4">
+                                            <select name="user_id" id="" class="form-control">
+                                                <option value="0">Select</option>
+                                                @foreach(\App\User::all() as $user)
+                                                    <option value="{{$user->id}}">{{$user->name}}</option>
+                                                @endforeach
+
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <button class="btn btn-primary assign"><i class="fa fa-fw fa-bitcoin"></i>Assign</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-sm-1 col-sm-offset-8">
+                                <form action="{{url()->route("orders.remove")}}" method="POST" id="delete" class="form-horizontal">
+                                    {{csrf_field()}}
+                                    @method("DELETE")
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <button class="btn btn-danger delete"><i class="fa fa-fw fa-trash"></i>Delete select</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 @endif
             </div>

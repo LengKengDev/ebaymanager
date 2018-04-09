@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\HasAdminRole;
 use App\Order;
 use DateTime;
 use Illuminate\Http\Request;
@@ -11,11 +12,29 @@ use Exception;
 
 class ImportController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->middleware([HasAdminRole::class]);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create()
     {
         return view("import.create");
     }
 
+    /**
+     * @param Request $request
+     * @return $this|\Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [

@@ -35,7 +35,13 @@ class OrdersController extends Controller
             ->editColumn('note', function ($order) {
                 return "{$order->note} | {$order->site} | {$order->email} | {$order->number}";
             })
-            ->rawColumns(['action', 'item', 'note', 'tracking'])
+            ->editColumn('buyer', function ($order) {
+                return "<a target='_new' href='https://feedback.ebay.com/ws/eBayISAPI.dll?ViewFeedback2&userid={$order->buyer}&ftab=AllFeedback'>{$order->buyer}</a>";
+            })
+            ->editColumn('account.name', function ($order) {
+                return "<a target='_new' href='https://feedback.ebay.com/ws/eBayISAPI.dll?ViewFeedback2&userid={$order->account->name}&ftab=AllFeedback'>{$order->account->name}</a>";
+            })
+            ->rawColumns(['action', 'item', 'note', 'tracking', 'account.name', 'buyer'])
             ->make();
     }
 }
