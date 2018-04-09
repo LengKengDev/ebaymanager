@@ -45,7 +45,7 @@ class ImportController extends Controller
                         "quantity" => $item["quantity"],
                         "transaction_id" => $item["paypal_transaction_id"] ?: $item["transaction_id"],
                         "price" => str_replace("$", "",$item["total_price"]),
-                        "note" => "Email: {$item["buyer_email"]} \n Payment Method: {$item["payment_method"]} \n Shipping service: {$item["shipping_service"]} \n Order add new at: {$item["paid_on_date"]} \n Message: \n {$item["notes_to_yourself"]}",
+                        "note" => $item["paid_on_date"] == null ? "" : "Order add new at: {$item["paid_on_date"]}",
                         "address" => " {$item["buyer_fullname"]} | {$item["buyer_phone_number"]} | {$item["buyer_address_1"]} | {$item["buyer_city"]} | {$item["buyer_state"]} | {$item["buyer_country"]} | (Zip: {$item["buyer_zip"]})"
                     ]);
                 }

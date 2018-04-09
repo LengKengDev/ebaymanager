@@ -2,7 +2,6 @@
     <table class="table table-hover table-striped display responsive no-wrap"  id="order" width="100%">
         <thead>
         <tr>
-            <th></th>
             <th>ID</th>
             <th>Buyer</th>
             <th>Account</th>
@@ -18,7 +17,6 @@
         </thead>
         <tfoot>
         <tr>
-            <th></th>
             <th>ID</th>
             <th>Buyer</th>
             <th>Account</th>

@@ -9,3 +9,4 @@ require('./bootstrap');
 require('angular');
 require('datatables/media/js/jquery.dataTables');
 require('datatables.net-bs/js/dataTables.bootstrap');
+require('datatables.net-responsive-bs');
