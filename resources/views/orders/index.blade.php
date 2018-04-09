@@ -16,7 +16,7 @@
                     <h3 class="panel-title">Analysts</h3>
                 </div>
                 <div class="panel-body">
-                    <table class="table table-hover table-responsive ">
+                    <table class="table table-hover table-responsive" width="100%">
                         <thead>
                             <tr>
                                 <td>Total orders</td>
@@ -66,6 +66,7 @@
             }
 
             var dt = $('table#order').DataTable({
+                responsive: true,
                 processing: true,
                 serverSide: true,
                 ajax: '{{ url()->route("api.orders.index") }}',

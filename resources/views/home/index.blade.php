@@ -81,6 +81,7 @@
             };
 
             var dt = $('table#order').DataTable({
+                responsive: true,
                 processing: true,
                 serverSide: true,
                 ajax: '{{ url()->route("api.orders.index") }}',

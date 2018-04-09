@@ -32,3 +32,9 @@ table#order {
     background: url('/images/vendor/datatables/details_close.png') no-repeat center center;
   }
 }
+
+@media (min-width: 1650px) {
+  .container-fluid {
+    padding: 0 30px;
+  }
+}
