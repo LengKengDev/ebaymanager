@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Order;
+use DateTime;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DataTables;
@@ -25,6 +26,13 @@ class OrdersController extends Controller
             ->addColumn('action', 'orders._action')
             ->editColumn('status', function ($order) {
                 return ucwords(str_replace("_", " ", $order->status));
+            })
+            ->editColumn('last_update', function ($order) {
+                $date = new DateTime($order->last_update);
+                if ($order->last_update == null) {
+                    return '';
+                }
+                return $date->format("d/m/Y");
             })
             ->editColumn('item', function ($order) {
                 return "<b class='text-primary text-lg'>{$order->quantity}</b> x ".$order->item;
