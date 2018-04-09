@@ -24,21 +24,17 @@
 
                             <div class="col-sm-4">
                                 <select name="account_id" id="" class="form-control">
+                                    <option value="0">Select account</option>
                                     @foreach(\App\Account::all() as $account)
                                         <option value="{{$account->id}}">{{$account->name}}</option>
                                     @endforeach
-                                    @if ($errors->has('account_id'))
-                                        <span class="help-block text-danger">
-                                            <strong>{{ $errors->first('account_id') }}</strong>
-                                        </span>
-                                    @endif
                                 </select>
                             </div>
                             <div class="col-sm-4">
-                                @if ($errors->has('email'))
+                                @if ($errors->has('account_id'))
                                     <span class="help-block text-danger">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
+                                            <strong>{{ $errors->first('account_id') }}</strong>
+                                        </span>
                                 @endif
                             </div>
                         </div>
