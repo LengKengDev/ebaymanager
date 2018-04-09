@@ -99,8 +99,12 @@ class OrdersController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        $order->user_id = $request->input("user_id", $order->user_id);
-        $order->account_id = $request->input("account_id", $order->account_id);
+        if ($request->input("user_id", $order->user_id) != 0) {
+            $order->user_id = $request->input("user_id", $order->user_id);
+        }
+        if ($request->input("account_id", $order->account_id) != 0) {
+            $order->account_id = $request->input("account_id", $order->account_id);
+        }
         $order->buyer = $request->input("buyer", $order->buyer);
         $order->address = $request->input("address", $order->address);
         $order->item = $request->input("item", $order->item);
