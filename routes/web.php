@@ -23,6 +23,9 @@ Route::resource("/users", "UsersController", [
     "only" => ["index", "show", "create", "store", "edit", "update", "destroy"]
 ]);
 
+Route::patch("/orders/assign", "OrdersController@assignUserForOrders")->name("orders.assign");
+Route::delete("/orders/remove", "OrdersController@destroyMultiOrders")->name("orders.remove");
+
 Route::resource("/orders", "OrdersController", [
     "only" => ["index", "show", "create", "store", "edit", "update", "destroy"]
 ]);

@@ -2,12 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\HasAdminRole;
 use App\User;
 use Illuminate\Http\Request;
 use Validator;
 
 class UsersController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->middleware([HasAdminRole::class]);
+    }
     /**
      * Display a listing of the resource.
      *

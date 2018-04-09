@@ -126,4 +126,44 @@ class OrdersController extends Controller
         $order->delete();
         return back()->with("status", "Order has been deleted");
     }
+
+    /**
+     * @param Request $request
+     */
+    public function destroyMultiOrders(Request $request)
+    {
+        $orders = Order::whereIn("id", $request->input("ids", []))->get();
+        $count  = 0;
+        foreach ($orders as $order) {
+            $order->delete();
+            $count++;
+        }
+
+        return back()->with("status", __("Successfully deleted :count orders", ["count" => $count]));
+    }
+
+    /**
+     * @param Request $request
+     */
+    public function assignUserForOrders(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'user_id' => 'required|exists:users,id'
+        ]);
+
+        if ($validator->fails()) {
+           return back()->with("status", "User does't exists");
+        }
+        $user_id = $request->input("user_id");
+        $orders = Order::whereIn("id", $request->input("ids", []))->get();
+
+        $count = 0;
+        foreach ($orders as $order) {
+            $order->user_id = $user_id;
+            $order->save();
+            $count++;
+        }
+
+        return back()->with("status", __("Successfully updated :count orders", ["count" => $count]));
+    }
 }

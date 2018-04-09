@@ -23,6 +23,8 @@
         "datatables.net-dt": "^1.10.16",
         "datatables.net-responsive-bs": "^2.2.1",
         "datatables.net-responsive-dt": "^2.2.1",
+        "datatables.net-select": "^1.2.5",
+        "datatables.net-select-bs": "^1.2.5",
         "font-awesome": "^4.7.0",
         "jquery": "^3.3.1"
     }
