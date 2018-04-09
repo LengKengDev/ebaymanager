@@ -29,7 +29,10 @@ class OrdersController extends Controller
             ->editColumn('item', function ($order) {
                 return "<b class='text-primary text-lg'>{$order->quantity}</b> x ".$order->item;
             })
-            ->rawColumns(['action', 'item', 'note'])
+            ->editColumn('tracking', function ($order) {
+                return "<a target='_new' href='https://www.packagetrackr.com/track/{$order->tracking}'>{$order->tracking}</a>";
+            })
+            ->rawColumns(['action', 'item', 'note', 'tracking'])
             ->make();
     }
 }
