@@ -23,7 +23,7 @@
     </head>
     <body>
         @include("layouts.header")
-        <div class="container content">
+        <div class="container-fluid content">
             @yield("content")
         </div>
         <script src="{{ mix("js/app.js") }}"></script>
