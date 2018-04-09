@@ -74,6 +74,20 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="email" class="col-sm-4 control-label text-muted text-right">Transaction ID</label>
+
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="transaction_id" value="{{ old("transaction_id") }}" placeholder="Jonh Doe">
+                            </div>
+                            <div class="col-sm-4">
+                                @if ($errors->has('transaction_id'))
+                                    <span class="help-block text-danger">
+                                        <strong>{{ $errors->first('transaction_id') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label for="email" class="col-sm-4 control-label text-muted text-right">Address</label>
 
                             <div class="col-sm-4">

@@ -43,7 +43,8 @@ class OrdersController extends Controller
         $validator = Validator::make($request->all(), [
             "user_id" => "exists:users,id",
             "account_id" => "exists:accounts,id",
-            "buyer" => "required"
+            "buyer" => "required",
+            "transaction_id" => "required|unique:orders"
         ]);
 
         if($validator->fails()) {
@@ -52,6 +53,7 @@ class OrdersController extends Controller
         }
 
         $order = Order::create([
+            "transaction_id" => $request->input("transaction_id"),
             "user_id" => $request->input("user_id"),
             "account_id" => $request->input("account_id"),
             "address" => $request->input("address", ""),
