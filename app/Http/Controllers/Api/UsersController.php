@@ -27,13 +27,16 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::select(['id','name', 'created_at', 'email']);
+        $users = User::select(['id','name', 'per', 'created_at', 'email']);
 
         return DataTables::of($users)
             ->addColumn('action', 'users._action')
             ->editColumn('name', 'users._name')
             ->editColumn('created_at', function ($account) {
                 return $account->created_at->diffForHumans();
+            })
+            ->editColumn('per', function ($account) {
+                return $account->per." %";
             })
             ->rawColumns(['name', 'action'])
             ->make();

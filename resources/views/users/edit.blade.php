@@ -42,6 +42,20 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="email" class="col-sm-4 control-label text-muted text-right">%</label>
+
+                            <div class="col-sm-4">
+                                <input id="name" type="number" class="form-control" name="per" value="{{ $user->per }}" placeholder="%" required min="0" max="100">
+                            </div>
+                            <div class="col-sm-4">
+                                @if ($errors->has('per'))
+                                    <span class="help-block text-danger">
+                                        <strong>{{ $errors->first('per') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label for="email" class="col-sm-4 control-label text-muted text-right">Created at</label>
 
                             <div class="col-sm-4">

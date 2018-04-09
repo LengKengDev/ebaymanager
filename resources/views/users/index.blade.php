@@ -24,6 +24,7 @@
                             <th>ID</th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>%</th>
                             <th>Created at</th>
                             <th>Action</th>
                         </tr>
@@ -33,6 +34,7 @@
                             <th>ID</th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>%</th>
                             <th>Created at</th>
                             <th>Action</th>
                         </tr>
@@ -58,6 +60,7 @@
                     {data: 'id'},
                     {data: 'name'},
                     {data: 'email'},
+                    {data: 'per'},
                     {data: 'created_at'},
                     {data: 'action', orderable: false, searchable: false}
                 ]

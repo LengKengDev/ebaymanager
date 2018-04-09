@@ -51,6 +51,7 @@ class UsersController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            "per" => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -61,6 +62,7 @@ class UsersController extends Controller
             "name" => $request->input("name"),
             "email" => $request->input("email"),
             "password" => bcrypt($request->input("password")),
+            "per" => $request->input("per", 0),
         ]);
         return redirect()->route("users.index")
             ->with("status", __("User :email has been created", ["email" => $user->email]));
@@ -107,6 +109,7 @@ class UsersController extends Controller
         }
 
         $user->name = $request->input("name", $user->name);
+        $user->per = $request->input("per", $user->per);
         $user->save();
 
         return back()->with("status", __("User `:email` has been updated", ["email" => $user->email]));
