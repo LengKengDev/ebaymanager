@@ -31,6 +31,10 @@ table#order {
   tr.details td.details-control {
     background: url('/images/vendor/datatables/details_close.png') no-repeat center center;
   }
+
+  .text-lg {
+    font-size: 15px;
+  }
 }
 
 @media (min-width: 1650px) {
