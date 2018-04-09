@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use DateTime;
 use Illuminate\Http\Request;
 use Validator;
 use Excel;
@@ -38,6 +39,7 @@ class ImportController extends Controller
             foreach ($data as $item) {
                 if(!in_array($item["paypal_transaction_id"] ?: $item["transaction_id"], $ids)){
                     $count++;
+                    $date = new DateTime($item["paid_on_date"]);
                     Order::create([
                         "account_id" => $request->input("account_id"),
                         "buyer" => $item["user_id"],
@@ -45,7 +47,7 @@ class ImportController extends Controller
                         "quantity" => $item["quantity"],
                         "transaction_id" => $item["paypal_transaction_id"] ?: $item["transaction_id"],
                         "price" => str_replace("$", "",$item["total_price"]),
-                        "note" => $item["paid_on_date"] == null ? "" : "Order add new at: {$item["paid_on_date"]}",
+                        "note" => $item["paid_on_date"] == null ? "" : "Order add new at: {$date->format("d/m/Y")}",
                         "address" => " {$item["buyer_fullname"]} | {$item["buyer_phone_number"]} | {$item["buyer_address_1"]} | {$item["buyer_city"]} | {$item["buyer_state"]} | {$item["buyer_country"]} | (Zip: {$item["buyer_zip"]})"
                     ]);
                 }

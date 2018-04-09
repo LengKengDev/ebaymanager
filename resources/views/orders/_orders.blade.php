@@ -10,6 +10,7 @@
             <th>Item</th>
             <th>$</th>
             <th>Last Update</th>
+            <th>Tracking</th>
             <th>Status</th>
             <th>Note</th>
             <th>Action</th>
@@ -25,6 +26,7 @@
             <th>Item</th>
             <th>$</th>
             <th>Last Update</th>
+            <th>Tracking</th>
             <th>Status</th>
             <th>Note</th>
             <th>Action</th>

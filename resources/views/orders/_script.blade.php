@@ -15,6 +15,7 @@
                 {data: 'item'},
                 {data: 'price'},
                 {data: 'last_update', "defaultContent": "<span class='text-danger'>Not set</span>"},
+                {data: 'tracking', "defaultContent": "<span class='text-danger'>Not set</span>"},
                 {data: 'status'},
                 {data: 'note'},
                 {data: 'action', orderable: false, searchable: false},
