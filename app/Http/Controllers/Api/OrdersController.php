@@ -27,7 +27,7 @@ class OrdersController extends Controller
                 return ucwords(str_replace("_", " ", $order->status));
             })
             ->editColumn('item', function ($order) {
-                return $order->item." x <b class='text-danger'>{$order->quantity}</b>";
+                return "<b class='text-primary text-lg'>{$order->quantity}</b> x ".$order->item;
             })
             ->rawColumns(['action', 'item', 'note'])
             ->make();

@@ -40,13 +40,13 @@ class ImportController extends Controller
                     $count++;
                     Order::create([
                         "account_id" => $request->input("account_id"),
-                        "buyer" => $item["buyer_fullname"],
+                        "buyer" => $item["user_id"],
                         "item" => $item["item_title"],
                         "quantity" => $item["quantity"],
                         "transaction_id" => $item["paypal_transaction_id"] ?: $item["transaction_id"],
                         "price" => str_replace("$", "",$item["total_price"]),
-                        "note" => "Email: {$item["buyer_email"]} \n Payment Method: {$item["payment_method"]} \n Shipping service: {$item["shipping_service"]} \n Order add new at: {$item["paid_on_date"]} \n <span class='text-warning'>Note</span>: \n {$item["notes_to_yourself"]}",
-                        "address" => "{$item["buyer_phone_number"]} | {$item["buyer_address_1"]} | {$item["buyer_city"]} | {$item["buyer_state"]} | {$item["buyer_country"]} | (Zip: {$item["buyer_zip"]})"
+                        "note" => "Email: {$item["buyer_email"]} \n Payment Method: {$item["payment_method"]} \n Shipping service: {$item["shipping_service"]} \n Order add new at: {$item["paid_on_date"]} \n Message: \n {$item["notes_to_yourself"]}",
+                        "address" => " {$item["buyer_fullname"]} | {$item["buyer_phone_number"]} | {$item["buyer_address_1"]} | {$item["buyer_city"]} | {$item["buyer_state"]} | {$item["buyer_country"]} | (Zip: {$item["buyer_zip"]})"
                     ]);
                 }
             }
