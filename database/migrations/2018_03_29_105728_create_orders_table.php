@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -15,8 +16,8 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('account_id')->nullable();
-            $table->unsignedInteger('user_id')->nullable();
+            $table->integer('user_id')->unsigned()->nullable();
+            $table->integer('account_id')->unsigned()->nullable();
             $table->string('transaction_id')->nullable();
             $table->string('buyer');
             $table->string('address')->nullable();
@@ -31,6 +32,12 @@ class CreateOrdersTable extends Migration
             $table->string('site')->nullable();
             $table->string('email')->nullable();
             $table->string('number')->nullable();
+            $table->foreign('account_id')
+                ->references('id')->on('accounts')
+                ->onDelete(DB::raw('set null'));
+            $table->foreign('user_id')
+                ->references('id')->on('users')
+                ->onDelete(DB::raw('set null'));
             $table->timestamps();
         });
     }
