@@ -45,6 +45,9 @@ class OrdersController extends Controller
             })
             ->editColumn('tracking', 'orders._tracking')
             ->editColumn('note', function ($order) {
+                if ($order->tracking != null) {
+                    return "<span class='text-primary'>{$order->note}</span>";
+                }
                 return "{$order->note} | {$order->site} | {$order->email} | {$order->number}";
             })
             ->editColumn('buyer', function ($order) {
