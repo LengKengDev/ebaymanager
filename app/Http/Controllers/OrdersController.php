@@ -109,8 +109,12 @@ class OrdersController extends Controller
         $order->address = $request->input("address", $order->address);
         $order->item = $request->input("item", $order->item);
         $order->price = $request->input("price", $order->price);
+        if ($order->tracking == null && $request->input("tracking", $order->tracking) != null) {
+            $order->note = "Add track at: ".(date('d/m/Y'));
+        } else {
+            $order->note = $request->input("note", $order->note);
+        }
         $order->tracking = $request->input("tracking", $order->tracking);
-        $order->note = $request->input("note", $order->note);
         $order->site = $request->input("site", "");
         $order->email = $request->input("email", "");
         $order->number = $request->input("number", "");
