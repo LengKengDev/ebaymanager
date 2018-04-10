@@ -65,6 +65,9 @@ class OrdersController extends Controller
                 }
                 return "<a target='_new' href='".(url()->route('users.show', ['user' => $order->user]))."'>{$order->user->name}</a>";
             })
+            ->addColumn("is_tracking", function ($order) {
+                return is_null($order->tracking);
+            })
             ->rawColumns(['action', 'item', 'note', 'tracking', 'account.name', 'buyer', 'user.name', 'address'])
             ->make();
     }
