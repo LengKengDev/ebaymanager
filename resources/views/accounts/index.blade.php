@@ -51,6 +51,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Name</th>
+                                <th>Total</th>
                                 <th>Created at</th>
                                 <th>Action</th>
                             </tr>
@@ -59,6 +60,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Name</th>
+                                <th>Total</th>
                                 <th>Created at</th>
                                 <th>Action</th>
                             </tr>
@@ -80,6 +82,7 @@
                 columns: [
                     {data: 'id'},
                     {data: 'name'},
+                    {data: 'total'},
                     {data: 'created_at'},
                     {data: 'action', orderable: false, searchable: false}
                 ]

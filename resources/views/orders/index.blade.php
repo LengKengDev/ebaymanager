@@ -11,33 +11,6 @@
             </div>
         </div>
         <div class="col-sm-12">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Analysts</h3>
-                </div>
-                <div class="panel-body">
-                    <table class="table table-hover table-responsive" width="100%">
-                        <thead>
-                            <tr>
-                                <td>Total orders</td>
-                                <td>$</td>
-                                <td>Order need pay</td>
-                                <td>$</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>{{\App\Order::count()}}</td>
-                                <td>{{\App\Order::all()->sum("price")}}</td>
-                                <td>Order need pay</td>
-                                <td>$</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Orders</h3>

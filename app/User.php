@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
@@ -29,8 +30,65 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function orders()
     {
         return $this->hasMany(Order::class);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
+    public function getTransactions(Request $request)
+    {
+        return $this->transactions()->paginate(10);
+    }
+
+
+
+    /**
+     * @return mixed
+     */
+    public function totalAmount()
+    {
+        return $this->orders()->sum('price');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function totalTransactions()
+    {
+        return $this->transactions()->sum('value');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function totalAmountDelivered()
+    {
+        return $this->orders()->where("status", "Delivered")->sum('price');
+    }
+
+    public function totalOrdersDelivered()
+    {
+        return $this->orders()->where("status", "Delivered")->count();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function needPay()
+    {
+        return $this->totalAmountDelivered() * $this->per / 100 - $this->totalTransactions();
+    }
 }
+
+

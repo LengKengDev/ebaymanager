@@ -27,6 +27,9 @@ class OrdersController extends Controller
             ->editColumn('status', function ($order) {
                 return ucwords(str_replace("_", " ", $order->status));
             })
+            ->editColumn('price', function ($order) {
+                return $order->price." $";
+            })
             ->editColumn('last_update', function ($order) {
                 $date = new DateTime($order->last_update);
                 if ($order->last_update == null) {
@@ -35,7 +38,10 @@ class OrdersController extends Controller
                 return $date->format("d/m/Y");
             })
             ->editColumn('item', function ($order) {
-                return "<b class='text-primary text-lg'>{$order->quantity}</b> x ".$order->item;
+                return "<b class='text-primary text-lg'>{$order->quantity}</b> x <span title='$order->item'>".str_limit($order->item, 30)."</span>";
+            })
+            ->editColumn('address', function ($order) {
+                return "<span title='$order->address'>".str_limit($order->address, 30)."</span>";
             })
             ->editColumn('tracking', function ($order) {
                 return "<a target='_new' href='https://www.packagetrackr.com/track/{$order->tracking}'>{$order->tracking}</a>";
@@ -52,7 +58,13 @@ class OrdersController extends Controller
                 }
                 return "<a target='_new' href='https://feedback.ebay.com/ws/eBayISAPI.dll?ViewFeedback2&userid=".($order->account->name == null ? '': $order->account->name)."&ftab=AllFeedback'>".($order->account->name == null ? '': $order->account->name)."</a>";
             })
-            ->rawColumns(['action', 'item', 'note', 'tracking', 'account.name', 'buyer'])
+            ->editColumn('user.name', function ($order) {
+                if ($order->user == null) {
+                    return "<span class='text-danger'>Not Set</span>";
+                }
+                return "<a target='_new' href='".(url()->route('users.show', ['user' => $order->user]))."'>{$order->user->name}</a>";
+            })
+            ->rawColumns(['action', 'item', 'note', 'tracking', 'account.name', 'buyer', 'user.name', 'address'])
             ->make();
     }
 }

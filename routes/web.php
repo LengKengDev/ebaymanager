@@ -39,3 +39,7 @@ Route::namespace('Api')->prefix("api")->name("api.")->group(function () {
     Route::resource("users", "UsersController", ["only" => ["index"]]);
     Route::resource("orders", "OrdersController", ["only" => ["index"]]);
 });
+
+Route::resource("/transactions", "TransactionsController", [
+    "only" => ["destroy", "store"]
+]);

@@ -18,7 +18,7 @@
             <th>User</th>
             <th>Address</th>
             <th>Item</th>
-            <th>$</th>
+            <th>Total price $</th>
             <th>Last Update</th>
             <th>Tracking</th>
             <th>Status</th>

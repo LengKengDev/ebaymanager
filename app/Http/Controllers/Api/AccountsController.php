@@ -36,6 +36,9 @@ class AccountsController extends Controller
             ->editColumn('created_at', function ($account) {
                 return $account->created_at->diffForHumans();
             })
+            ->addColumn('total', function ($account) {
+                return $account->orders->count()." orders ( {$account->totalAmount()} $)";
+            })
             ->rawColumns(['name', 'action'])
             ->make();
     }
