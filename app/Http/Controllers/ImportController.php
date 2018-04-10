@@ -64,7 +64,7 @@ class ImportController extends Controller
                         "buyer" => $item["user_id"],
                         "item" => $item["item_title"],
                         "quantity" => $item["quantity"],
-                        "paid_on_date" => $item["paid_on_date"],
+                        "paid_on_date" => $item["paid_on_date"] == null ? null : $date->format("Y-m-d"),
                         "transaction_id" => $item["paypal_transaction_id"] ?: $item["transaction_id"],
                         "price" => str_replace("$", "",$item["total_price"]),
                         "note" => $item["paid_on_date"] == null ? "" : "Order add new at: {$date->format("d/m/Y")}",
