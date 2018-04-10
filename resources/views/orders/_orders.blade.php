@@ -8,7 +8,7 @@
    </div>
 @endif
 <div class="table-responsive">
-    <table class="table table-hover table-striped display responsive no-wrap"  id="order" width="100%">
+    <table class="table table-hover table-striped display table-bordered responsive no-wrap"  id="order" width="100%">
         <thead>
         <tr>
             <th><input type="checkbox" class="select-all"></th>
