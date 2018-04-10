@@ -43,9 +43,7 @@ class OrdersController extends Controller
             ->editColumn('address', function ($order) {
                 return "<span title='$order->address'>".str_limit($order->address, 30)."</span>";
             })
-            ->editColumn('tracking', function ($order) {
-                return "<a target='_new' href='https://www.packagetrackr.com/track/{$order->tracking}'>{$order->tracking}</a>";
-            })
+            ->editColumn('tracking', 'orders._tracking')
             ->editColumn('note', function ($order) {
                 return "{$order->note} | {$order->site} | {$order->email} | {$order->number}";
             })

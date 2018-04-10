@@ -25,6 +25,7 @@
             <th>Note</th>
             <th>Action</th>
             <th>email</th>
+            <th>num</th>
         </tr>
         </thead>
         <tfoot>
@@ -43,6 +44,7 @@
             <th>Note</th>
             <th>Action</th>
             <th>email</th>
+            <th>num</th>
         </tr>
         </tfoot>
     </table>
