@@ -9,9 +9,11 @@
             columns: [
                 {data: null, searchable: false,  "orderable": false, "defaultContent": ""},
                 {data: 'id'},
-                {data: 'buyer'},
-                {data: 'account.name', "defaultContent": "<span class='text-danger'>Not set</span>"},
-                {data: 'user.name', "defaultContent": "<span class='text-danger'>Not set</span>"},
+                @if(Auth::user()->can('views_full'))
+                    {data: 'buyer'},
+                    {data: 'account.name', "defaultContent": "<span class='text-danger'>Not set</span>"},
+                    {data: 'user.name', "defaultContent": "<span class='text-danger'>Not set</span>"},
+                @endif
                 {data: 'address'},
                 {data: 'item'},
                 {data: 'price'},

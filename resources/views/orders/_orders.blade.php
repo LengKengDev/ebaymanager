@@ -13,9 +13,11 @@
         <tr>
             <th><input type="checkbox" class="select-all"></th>
             <th>ID</th>
-            <th>Buyer</th>
-            <th>Account</th>
-            <th>User</th>
+            @if(Auth::user()->can('views_full'))
+                <th>Buyer</th>
+                <th>Account</th>
+                <th>User</th>
+            @endif
             <th>Address</th>
             <th>Item</th>
             <th>Total price $</th>
@@ -32,9 +34,11 @@
         <tr>
             <th></th>
             <th>ID</th>
-            <th>Buyer</th>
-            <th>Account</th>
-            <th>User</th>
+            @if(Auth::user()->can('views_full'))
+                <th>Buyer</th>
+                <th>Account</th>
+                <th>User</th>
+            @endif
             <th>Address</th>
             <th>Item</th>
             <th>$</th>
