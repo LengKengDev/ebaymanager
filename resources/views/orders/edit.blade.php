@@ -20,6 +20,7 @@
                     <form class="form-horizontal" method="POST" action="{{url()->route("orders.update", ['order' => $order])}}">
                         {{ csrf_field() }}
                         @method("PATCH")
+                        @if(Auth::user()->can('views_full'))
                         <div class="form-group">
                             <label for="email" class="col-sm-4 control-label text-muted text-right">Account</label>
 
@@ -87,6 +88,7 @@
                                 @endif
                             </div>
                         </div>
+                        @endif
                         <div class="form-group">
                             <label for="email" class="col-sm-4 control-label text-muted text-right">Address</label>
 
