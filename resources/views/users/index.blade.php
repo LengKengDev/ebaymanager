@@ -25,6 +25,9 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>%</th>
+                            <th>Total orders</th>
+                            <th>Orders success</th>
+                            <th>Need pay</th>
                             <th>Created at</th>
                             <th>Action</th>
                         </tr>
@@ -35,6 +38,9 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>%</th>
+                            <th>Total orders</th>
+                            <th>Orders success</th>
+                            <th>Need pay</th>
                             <th>Created at</th>
                             <th>Action</th>
                         </tr>
@@ -61,6 +67,9 @@
                     {data: 'name'},
                     {data: 'email'},
                     {data: 'per'},
+                    {data: 'total'},
+                    {data: 'delivered'},
+                    {data: 'needPay'},
                     {data: 'created_at'},
                     {data: 'action', orderable: false, searchable: false}
                 ]

@@ -16,24 +16,39 @@
                     <h3 class="panel-title">Analysts</h3>
                 </div>
                 <div class="panel-body">
-                    <table class="table table-hover table-responsive table-bordered table-striped">
-                        <thead>
+                    @if(Auth::user()->can('views_full'))
+                        <table class="table table-hover table-responsive table-bordered table-striped">
+                            <thead>
                             <tr>
                                 <td>Total orders</td>
-                                <td>$</td>
+                                <td>Orders success</td>
                                 <td>Order need pay</td>
-                                <td>$</td>
                             </tr>
-                        </thead>
-                        <tbody>
+                            </thead>
+                            <tbody>
                             <tr>
-                                <td>{{\App\Order::count()}}</td>
-                                <td>{{\App\Order::all()->sum("price")}}</td>
-                                <td>Order need pay</td>
-                                <td>$</td>
+                                <td>{{\App\Order::count()}} orders ( {{\App\Order::sum('price')}} $)</td>
+                                <td>{{\App\Order::delivered()->count()}} orders ({{\App\Order::delivered()->sum('price')}} $)</td>
+                                <td>{{\App\Order::needpay()}} $</td>
                             </tr>
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    @else
+                        <table class="table table-hover table-responsive table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <td>Total orders</td>
+                                <td>Orders success</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>{{Auth::user()->orders->count()}} orders ( {{Auth::user()->totalAmount()}} $)</td>
+                                <td>{{Auth::user()->totalOrdersDelivered()}} orders ({{Auth::user()->totalAmountDelivered()}} $)</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    @endif
                 </div>
             </div>
         </div>
