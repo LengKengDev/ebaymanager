@@ -95,8 +95,23 @@
                     <h3 class="panel-title">History</h3>
                 </div>
                 <div class="panel-body">
-
-                    <h3 class="text-center">Transactions histories (Total: {{$user->transactions->sum('value')}}<i class="fa fa-dollar fa-fw"></i>)</h3>
+                    <table class="table table-hover table-responsive table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <td>Total orders</td>
+                            <td>Orders success</td>
+                            <td>Need to pay</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>{{$user->orders->count()}} orders ( {{$user->totalAmount()}} $)</td>
+                            <td>{{$user->totalOrdersDelivered()}} orders ({{$user->totalAmountDelivered()}} $)</td>
+                            <td>{{$user->needPay()}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <h3 class="text-center">Transactions histories</h3>
                     <hr>
                     <div class="row">
                         <div class="col-sm-6 col-sm-offset-3">
@@ -120,7 +135,10 @@
                                         </div>
                                     </li>
                                 @endforeach
+
                             </ul>
+                            (Total: <b class="text-primary">{{$user->transactions->sum('value')}}</b><i class="fa fa-dollar fa-fw"></i>)
+                            <br>
                             {{$histories->links()}}
                         </div>
                     </div>
