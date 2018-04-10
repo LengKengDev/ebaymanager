@@ -76,6 +76,7 @@
     <script>
         $(document).ready(function () {
             $('table').dataTable({
+                responsive: true,
                 processing: true,
                 serverSide: true,
                 ajax: '{{ url()->route("api.accounts.index") }}',
