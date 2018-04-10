@@ -20,6 +20,7 @@
                 {data: 'status'},
                 {data: 'note'},
                 {data: 'action', orderable: false, searchable: false},
+                {data: 'email', visible: false}
             ],
             order: [[1, 'desc']],
             select: {

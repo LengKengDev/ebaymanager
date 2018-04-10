@@ -24,6 +24,7 @@
             <th>Status</th>
             <th>Note</th>
             <th>Action</th>
+            <th>email</th>
         </tr>
         </thead>
         <tfoot>
@@ -41,6 +42,7 @@
             <th>Status</th>
             <th>Note</th>
             <th>Action</th>
+            <th>email</th>
         </tr>
         </tfoot>
     </table>
