@@ -78,9 +78,13 @@ $ chown nginx:nginx storage
 * Configure the correct `.env` file: database, mail, debug ..
 
 ```bash
+$ php artisan key:generate
 $ php artisan migrate
 $ php artisan db:seed
 ```
+### Https error
+
+- Edit file `app/Providers/AppServiceProvider.php` to [AppServiceProvider.php](https://gist.github.com/ohmygodvt95/5fb012647919f59eaa3e10176fde50cb)
 
 ## Contributors
 
