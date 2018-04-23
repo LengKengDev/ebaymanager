@@ -27,6 +27,7 @@ class OrdersController extends Controller
             ->editColumn('status', function ($order) {
                 return ucwords(str_replace("_", " ", $order->status));
             })
+            ->editColumn('status', 'orders._status')
             ->editColumn('price', function ($order) {
                 return $order->price." $";
             })
@@ -68,7 +69,7 @@ class OrdersController extends Controller
             ->addColumn("is_tracking", function ($order) {
                 return is_null($order->tracking);
             })
-            ->rawColumns(['action', 'item', 'note', 'tracking', 'account.name', 'buyer', 'user.name', 'address'])
+            ->rawColumns(['status', 'action', 'item', 'note', 'tracking', 'account.name', 'buyer', 'user.name', 'address'])
             ->make();
     }
 }

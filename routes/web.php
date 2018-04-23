@@ -38,6 +38,12 @@ Route::namespace('Api')->prefix("api")->name("api.")->group(function () {
     Route::resource("accounts", "AccountsController", ["only" => ["index"]]);
     Route::resource("users", "UsersController", ["only" => ["index"]]);
     Route::resource("orders", "OrdersController", ["only" => ["index"]]);
+    Route::resource("tracking", "TrackingController", [
+        "only" => ["show"],
+        "parameters" => [
+            "tracking" => "order"
+        ]
+    ]);
 });
 
 Route::resource("/transactions", "TransactionsController", [
