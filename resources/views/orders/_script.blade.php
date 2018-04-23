@@ -1,6 +1,12 @@
 <script>
     $(document).ready(function () {
 
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
         var dt = $('table#order').DataTable({
             responsive: true,
             processing: true,
@@ -37,7 +43,6 @@
                 targets:   0
             } ],
             "createdRow": function( row, data, dataIndex){
-                console.log(data);
                 if( data.is_tracking ==  "0"){
                     $(row).addClass('blue-class');
                 }
@@ -78,6 +83,13 @@
                     $('#delete').addHidden(`ids[${i}]`, data[i].id);
                 }
             }
+        });
+
+        $(document).on("click", ".btn-status", function () {
+            var url = $(this).attr("href");
+            $.get(url).always(function() {
+                dt.ajax.reload(null, false);
+            });
         });
 
     });

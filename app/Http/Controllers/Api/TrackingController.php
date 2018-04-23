@@ -20,7 +20,7 @@ class TrackingController extends Controller
     public function show(Order $order)
     {
         if(strlen($order->tracking) == 0) {
-            return back()->with("status",  "Order haven't tracking code");
+            return response()->json(["status" =>  "Order haven't tracking code"], 500);
         }
         $response = Curl::to($this->base_url."guess/{$order->tracking}")->asJson()->get();
         $carrier = $response[0] ?? null;
@@ -31,13 +31,13 @@ class TrackingController extends Controller
             if ($status != null) {
                 $order->status= $status;
                 $order->save();
-                return back()->with("status", "Order {$order->id} update status to `{$status}`");
+                return response()->json(["status" => "Order {$order->id} update status to `{$status}`"]);
             }
-            return back()->with("status", "Tracking code incorrect");
+            return response()->json(["status" =>  "Tracking code incorrect"], 500);
 
         }
         else {
-            return back()->with("status",  "Order haven't tracking code");
+            return response()->json(["status" =>  "Order haven't tracking code"], 500);
         }
     }
 }
