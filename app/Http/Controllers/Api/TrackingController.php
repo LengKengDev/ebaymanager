@@ -27,13 +27,18 @@ class TrackingController extends Controller
         $carrier = $response[0] ?? null;
         switch ($carrier) {
             case null:
+                return response()->json(["status" =>  "Tracking code incorrect"], 500);
                 break;
             case "ups";
                 $url = "http://www.theupsstore.ca/track/{$order->tracking}/";
                 $html = new Htmldom($url);
                 $array = $html->find('td.desc');
                 if (count($array) > 0) {
-                    $order->status = $array[0]->text();
+                    $status = $array[0]->text();
+                    if (strpos($status, "Delivered") !== false) {
+                        $status = "Delivered";
+                    }
+                    $order->status = $status;
                     $order->save();
                 }
                 return response()->json(["status" => "Order {$order->id} update status to `{$order->status}`"]);
