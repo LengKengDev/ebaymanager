@@ -6,7 +6,7 @@ use App\Jobs\OrderTracking;
 use App\Order;
 use Illuminate\Http\Request;
 
-class CronController extends Controller
+class CronController extends NoAuthController
 {
     public function index()
     {
