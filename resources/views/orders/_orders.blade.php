@@ -11,6 +11,15 @@
                         @endforeach
                     </select>
                 </div>
+                <div class="col-sm-1 text-right"><h5>User</h5></div>
+                <div class="col-sm-2">
+                    <select name="" id="user" class="form-control">
+                        <option value="">All</option>
+                        @foreach(\App\User::all() as $account)
+                            <option value="{{$account->name}}">{{$account->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
                 <div class="col-sm-2 text-right"><h5>Show new order</h5></div>
                 <div class="col-sm-1">
                     <input type="checkbox" class="form-control" id="only-new">
