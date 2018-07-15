@@ -29,7 +29,7 @@ class OrdersController extends Controller
             })
             ->editColumn('status', 'orders._status')
             ->editColumn('price', function ($order) {
-                return $order->price." $";
+                return money($order->price, 'USD', true);
             })
             ->editColumn('last_update', function ($order) {
                 $date = new DateTime($order->last_update);

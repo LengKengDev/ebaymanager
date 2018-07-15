@@ -20,16 +20,22 @@
                         <table class="table table-hover table-responsive table-bordered table-striped">
                             <thead>
                             <tr>
-                                <td>Total orders</td>
-                                <td>Orders success</td>
+                                <td><i class="fa fa-dashboard"></i> Total orders</td>
+                                <td><i class="fa fa-plus-square"></i> Order New</td>
+                                <td><i class="fa fa-check"></i> Orders success(Delivered)</td>
                                 <td>Order need pay</td>
+                                <td>Track Added, Not delivery</td>
+                                <td>Added order number, not add track</td>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
-                                <td>{{\App\Order::count()}} orders ( {{\App\Order::sum('price')}} $)</td>
-                                <td>{{\App\Order::delivered()->count()}} orders ({{\App\Order::delivered()->sum('price')}} $)</td>
-                                <td>{{\App\Order::needpay()}} $</td>
+                                <td>{{\App\Order::count()}} orders ( @money(\App\Order::sum('price'), 'USD', true))</td>
+                                <td>{{\App\Order::newOrders()->count()}} orders ( @money(\App\Order::newOrders()->sum('price'), 'USD', true))</td>
+                                <td>{{\App\Order::delivered()->count()}} orders (@money(\App\Order::delivered()->sum('price'), 'USD', true))</td>
+                                <td>@money(\App\Order::needpay(), 'USD', true)</td>
+                                <td>{{\App\Order::trackAddedNotDelivery()->count()}} orders @money(\App\Order::trackAddedNotDelivery()->sum('price'), 'USD', true)</td>
+                                <td>{{\App\Order::inProgressNotAddTrack()->count()}} orders @money(\App\Order::inProgressNotAddTrack()->sum('price'), 'USD', true)</td>
                             </tr>
                             </tbody>
                         </table>
@@ -43,8 +49,8 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td>{{Auth::user()->orders->count()}} orders ( {{Auth::user()->totalAmount()}} $)</td>
-                                <td>{{Auth::user()->totalOrdersDelivered()}} orders ({{Auth::user()->totalAmountDelivered()}} $)</td>
+                                <td>{{Auth::user()->orders->count()}} orders ( @money(Auth::user()->totalAmount(), 'USD', true))</td>
+                                <td>{{Auth::user()->totalOrdersDelivered()}} orders (@money(Auth::user()->totalAmountDelivered(), 'USD', true))</td>
                             </tr>
                             </tbody>
                         </table>

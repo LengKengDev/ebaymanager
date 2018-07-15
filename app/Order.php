@@ -44,4 +44,19 @@ class Order extends Model
     {
         return $query->where('status', 'Delivered');
     }
+
+    public function scopeNewOrders($query)
+    {
+        return $query->where('status', 'order_new');
+    }
+
+    public function scopeTrackAddedNotDelivery($query)
+    {
+        return $query->whereNotNull('tracking')->where('status', '!=' , 'Delivered');
+    }
+
+    public function scopeInProgressNotAddTrack($query)
+    {
+        return $query->whereNull('tracking')->whereNotNull('number');
+    }
 }

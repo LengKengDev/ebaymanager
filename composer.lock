@@ -4,8 +4,69 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d00258edbdc3952cda169f387811b952",
+    "content-hash": "3c599e71614e9e6e302acf67854e937e",
     "packages": [
+        {
+            "name": "akaunting/money",
+            "version": "1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/akaunting/money.git",
+                "reference": "201967d36cbc60f327909ef77c6af99b826d12bc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/akaunting/money/zipball/201967d36cbc60f327909ef77c6af99b826d12bc",
+                "reference": "201967d36cbc60f327909ef77c6af99b826d12bc",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": ">=5.2 <6.0",
+                "illuminate/view": ">=5.2 <6.0",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9",
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Akaunting\\Money\\Provider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Akaunting\\Money\\": "./src"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Denis Duliçi",
+                    "email": "info@akaunting.com",
+                    "homepage": "https://akaunting.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Currency formatting and conversion package for Laravel.",
+            "keywords": [
+                "convert",
+                "currency",
+                "format",
+                "laravel",
+                "money"
+            ],
+            "time": "2018-07-14T23:12:51+00:00"
+        },
         {
             "name": "davejamesmiller/laravel-breadcrumbs",
             "version": "5.0.0",
@@ -1569,6 +1630,34 @@
                 "uuid"
             ],
             "time": "2018-01-20T00:28:24+00:00"
+        },
+        {
+            "name": "simple-html-dom/simple-html-dom",
+            "version": "1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/miclf/simple-html-dom.git",
+                "reference": "961610576c460546677a635062e9d3d7b6dab745"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/miclf/simple-html-dom/zipball/961610576c460546677a635062e9d3d7b6dab745",
+                "reference": "961610576c460546677a635062e9d3d7b6dab745",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "S.C. Chen",
+                    "email": "me578022@gmail.com"
+                }
+            ],
+            "description": "A copy of the PHP Simple HTML DOM Parser project.",
+            "time": "2013-05-14T22:27:35+00:00"
         },
         {
             "name": "spatie/laravel-permission",

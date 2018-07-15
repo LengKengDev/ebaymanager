@@ -14,10 +14,10 @@
             ajax: '{{ url()->route("api.orders.index") }}',
             columns: [
                 {data: null, searchable: false,  "orderable": false, "defaultContent": ""},
-                {data: 'id'},
+                {data: 'id', name: 'orders.id'},
                 @if(Auth::user()->can('views_full'))
                     {data: 'buyer'},
-                    {data: 'account.name', "defaultContent": "<span class='text-danger'>Not set</span>"},
+                    {data: 'account.name', "defaultContent": "<span class='text-danger'>Not set</span>", class: 'account'},
                     {data: 'user.name', "defaultContent": "<span class='text-danger'>Not set</span>"},
                 @endif
                 {data: 'address'},
@@ -25,7 +25,7 @@
                 {data: 'price'},
                 {data: 'last_update', "defaultContent": "<span class='text-danger'>Not set</span>"},
                 {data: 'tracking'},
-                {data: 'status'},
+                {data: 'status', class: 'status'},
                 {data: 'note'},
                 {data: 'action', orderable: false, searchable: false},
                 {data: 'email', visible: false},
@@ -85,6 +85,26 @@
             }
         });
 
+        $('select#account').change(function () {
+            console.log($(this).val());
+            var val = $(this).val();
+            dt.columns( '.account')
+                .search(val, false, false, false)
+                .draw();
+        });
+        
+        $('#only-new').change(function () {
+            if (this.checked) {
+                dt.columns( '.status')
+                    .search('order_new', false, false, false)
+                    .draw();
+            } else {
+                dt.columns( '.status')
+                    .search('', false, false, false)
+                    .draw();
+            }
+        });
+        
         $(document).on("click", ".btn-status", function () {
             var url = $(this).attr("href");
             $.get(url).always(function() {

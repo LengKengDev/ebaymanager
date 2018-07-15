@@ -49,3 +49,5 @@ Route::namespace('Api')->prefix("api")->name("api.")->group(function () {
 Route::resource("/transactions", "TransactionsController", [
     "only" => ["destroy", "store"]
 ]);
+
+Route::resource("/cron", "CronController", ['only' => ['index']]);
