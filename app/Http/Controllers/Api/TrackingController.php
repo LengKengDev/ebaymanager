@@ -2,33 +2,39 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Order;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Order;
 use Ixudra\Curl\Facades\Curl;
 use Yangqi\Htmldom\Htmldom;
 
 class TrackingController extends Controller
 {
-    private $base_url = "http://shipit-api.herokuapp.com/api/";
+    private $base_url="http://shipit-api.herokuapp.com/api/";
+
     /**
      * Display the specified resource.
      *
-     * @param  \App\Order  $order
+     * @param  \App\Order $order
      * @return \Illuminate\Http\Response
      */
     public function show(Order $order)
     {
-        if(strlen($order->tracking) == 0) {
-            return response()->json(["status" =>  "Order haven't tracking code"], 500);
+        if (strpos($order->tracking, 'TBA')) {
+            $order->status= "Delivered";
+            $order->save();
+            return response()->json(["status"=>"Order {$order->id} update status to `{$order->status}`"]);
         }
-        $response = Curl::to($this->base_url."guess/{$order->tracking}")->asJson()->get();
+
+        if (strlen($order->tracking) == 0) {
+            return response()->json(["status"=>"Order haven't tracking code"], 500);
+        }
+        $response=Curl::to($this->base_url . "guess/{$order->tracking}")->asJson()->get();
 
 
-        $carrier = $response[0] ?? null;
+        $carrier=$response[0] ?? null;
 
         if (is_array($response) && count($response) > 1) {
-            $carrier = $response;
+            $carrier=$response;
         }
 
         if (is_array($carrier)) {
@@ -37,27 +43,27 @@ class TrackingController extends Controller
                     case null:
                         break;
                     case "ups";
-                        $url = "http://www.theupsstore.ca/track/{$order->tracking}/";
-                        $html = new Htmldom($url);
-                        $array = $html->find('td.desc');
+                        $url="http://www.theupsstore.ca/track/{$order->tracking}/";
+                        $html=new Htmldom($url);
+                        $array=$html->find('td.desc');
                         if (count($array) > 0) {
-                            $status = $array[0]->text();
-                            if (strpos($status, "Delivered") !== false) {
-                                $status = "Delivered";
+                            $status=$array[0]->text();
+                            if (strpos($status, "delivered") !== false || strpos($status, "Delivered") !== false || stripos($status, "Received By The Local Post Office") !== false || stripos($status, "Package Transferred To Post Office") !== false) {
+                                $status="Delivered";
                             }
-                            $order->status = $status;
+                            $order->status=$status;
                             $order->save();
                         }
                         break;
                     default:
-                        $url = $this->base_url."carriers/$c/{$order->tracking}";
-                        $response = Curl::to($url)->asJson($url)->get();
-                        $status = $response["activities"][0]["details"] ?? null;
+                        $url=$this->base_url . "carriers/$c/{$order->tracking}";
+                        $response=Curl::to($url)->asJson($url)->get();
+                        $status=$response["activities"][0]["details"] ?? null;
                         if ($status != null) {
-                            if (strpos($status, "Delivered") !== false) {
-                                $status = "Delivered";
+                            if (strpos($status, "delivered") !== false || strpos($status, "Delivered") !== false || stripos($status, "Received By The Local Post Office") !== false || stripos($status, "Package Transferred To Post Office") !== false) {
+                                $status="Delivered";
                             }
-                            $order->status= $status;
+                            $order->status=$status;
                             $order->save();
                         }
                 }
@@ -74,7 +80,7 @@ class TrackingController extends Controller
                     $array=$html->find('td.desc');
                     if (count($array) > 0) {
                         $status=$array[0]->text();
-                        if (strpos($status, "Delivered") !== false) {
+                        if (strpos($status, "delivered") !== false || strpos($status, "Delivered") !== false || stripos($status, "Received By The Local Post Office") !== false || stripos($status, "Package Transferred To Post Office") !== false) {
                             $status="Delivered";
                         }
                         $order->status=$status;
@@ -87,7 +93,7 @@ class TrackingController extends Controller
                     $response=Curl::to($url)->asJson($url)->get();
                     $status=$response["activities"][0]["details"] ?? null;
                     if ($status != null) {
-                        if (strpos($status, "Delivered") !== false) {
+                        if (strpos($status, "delivered") !== false || strpos($status, "Delivered") !== false || stripos($status, "Received By The Local Post Office") !== false || stripos($status, "Package Transferred To Post Office") !== false) {
                             $status="Delivered";
                         }
                         $order->status=$status;
