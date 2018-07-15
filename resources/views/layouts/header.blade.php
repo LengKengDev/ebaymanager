@@ -39,6 +39,11 @@
                                 <i class="fa fa-users fa-fw"></i> Users
                             </a>
                         </li>
+                        <li>
+                            <a href="{{url()->route("cron.index")}}">
+                                <i class="fa fa-refresh fa-fw"></i> Refresh Cronjob
+                            </a>
+                        </li>
                     @endif
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
