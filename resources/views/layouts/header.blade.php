@@ -40,7 +40,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{url()->route("cron.index")}}">
+                            <a href="{{url()->route("cron.index")}}" target="_blank">
                                 <i class="fa fa-refresh fa-fw"></i> Refresh Cronjob
                             </a>
                         </li>

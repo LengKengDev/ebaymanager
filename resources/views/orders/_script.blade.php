@@ -18,7 +18,7 @@
                 @if(Auth::user()->can('views_full'))
                     {data: 'buyer'},
                     {data: 'account.name', "defaultContent": "<span class='text-danger'>Not set</span>", class: 'account'},
-                    {data: 'user.name', "defaultContent": "<span class='text-danger'>Not set</span>"},
+                    {data: 'user.name', "defaultContent": "<span class='text-danger'>Not set</span>", class: 'user'},
                 @endif
                 {data: 'address'},
                 {data: 'item'},
@@ -86,9 +86,15 @@
         });
 
         $('select#account').change(function () {
-            console.log($(this).val());
             var val = $(this).val();
             dt.columns( '.account')
+                .search(val, false, false, false)
+                .draw();
+        });
+
+        $('select#user').change(function () {
+            var val = $(this).val();
+            dt.columns( '.user')
                 .search(val, false, false, false)
                 .draw();
         });
