@@ -30,12 +30,12 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td>{{\App\Order::count()}} orders ( @money(\App\Order::sum('price'), 'USD', true))</td>
-                                <td>{{\App\Order::newOrders()->count()}} orders ( @money(\App\Order::newOrders()->sum('price'), 'USD', true))</td>
-                                <td>{{\App\Order::delivered()->count()}} orders (@money(\App\Order::delivered()->sum('price'), 'USD', true))</td>
-                                <td>@money(\App\Order::needpay(), 'USD', true)</td>
-                                <td>{{\App\Order::trackAddedNotDelivery()->count()}} orders @money(\App\Order::trackAddedNotDelivery()->sum('price'), 'USD', true)</td>
-                                <td>{{\App\Order::inProgressNotAddTrack()->count()}} orders @money(\App\Order::inProgressNotAddTrack()->sum('price'), 'USD', true)</td>
+                                <td>{{\App\Order::count()}} orders ({{money(\App\Order::sum('price'), 'USD', true)}})</td>
+                                <td>{{\App\Order::newOrders()->count()}} orders ({{money(\App\Order::newOrders()->sum('price'), 'USD', true)}})</td>
+                                <td>{{\App\Order::delivered()->count()}} orders ({{money(\App\Order::delivered()->sum('price'), 'USD', true)}})</td>
+                                <td>{{money(\App\Order::needpay(), 'USD', true)}}</td>
+                                <td>{{\App\Order::trackAddedNotDelivery()->count()}} orders ({{money(\App\Order::trackAddedNotDelivery()->sum('price'), 'USD', true)}})</td>
+                                <td>{{\App\Order::inProgressNotAddTrack()->count()}} orders ({{money(\App\Order::inProgressNotAddTrack()->sum('price'), 'USD', true)}})</td>
                             </tr>
                             </tbody>
                         </table>
