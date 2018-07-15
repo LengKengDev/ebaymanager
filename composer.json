@@ -12,6 +12,7 @@
         "laravel/framework": "5.6.*",
         "laravel/tinker": "^1.0",
         "maatwebsite/excel": "~2.1.0",
+        "simple-html-dom/simple-html-dom": "^1.5",
         "spatie/laravel-permission": "^2.9",
         "yajra/laravel-datatables-oracle": "~8.0",
         "yangqi/htmldom": "^1.0"
