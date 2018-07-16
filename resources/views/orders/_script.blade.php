@@ -14,7 +14,7 @@
             ajax: '{{ url()->route("api.orders.index") }}',
             columns: [
                 {data: null, searchable: false,  "orderable": false, "defaultContent": ""},
-                {data: 'id', name: 'orders.id'},
+                {data: 'id', {!! Auth::user()->can('views_full') ? "name: 'orders.id'" : ''!!}},
                 @if(Auth::user()->can('views_full'))
                     {data: 'buyer'},
                     {data: 'account.name', "defaultContent": "<span class='text-danger'>Not set</span>", class: 'account'},
