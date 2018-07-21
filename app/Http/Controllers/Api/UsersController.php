@@ -31,13 +31,13 @@ class UsersController extends Controller
         return DataTables::of($users)
             ->addColumn('action', 'users._action')
             ->addColumn('needPay', function ($user) {
-                return $user->needPay(). " $";
+                return money($user->needPay(), 'USD');
             })
             ->addColumn('total', function ($user) {
-                return $user->orders->count(). " orders ({$user->totalAmount()}$)";
+                return $user->orders->count(). " orders (".money($user->totalAmount(), "USD").")";
             })
             ->addColumn('delivered', function ($user) {
-                return $user->totalOrdersDelivered(). " orders ({$user->totalAmountDelivered()}$)";
+                return $user->totalOrdersDelivered(). " orders (".money($user->totalAmountDelivered(),"USD").")";
             })
             ->editColumn('name', 'users._name')
             ->editColumn('created_at', function ($account) {
