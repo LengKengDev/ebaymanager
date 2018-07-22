@@ -27,9 +27,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'note'
     ];
 
+    protected $maps = ['note' => 'user_note'];
+    protected $appends = ['note_user'];
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -77,6 +79,9 @@ class User extends Authenticatable
         return $this->orders()->where("status", "Delivered")->sum('price');
     }
 
+    /**
+     * @return int
+     */
     public function totalOrdersDelivered()
     {
         return $this->orders()->where("status", "Delivered")->count();
@@ -88,6 +93,14 @@ class User extends Authenticatable
     public function needPay()
     {
         return $this->totalAmountDelivered() * $this->per / 100 - $this->totalTransactions();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNoteUserAttribute()
+    {
+        return $this->attributes['note'];
     }
 }
 

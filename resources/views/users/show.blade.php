@@ -105,9 +105,9 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td>{{$user->orders->count()}} orders ( {{$user->totalAmount()}} $)</td>
-                            <td>{{$user->totalOrdersDelivered()}} orders ({{$user->totalAmountDelivered()}} $)</td>
-                            <td>{{$user->needPay()}}</td>
+                            <td>{{$user->orders->count()}} orders ( {{money($user->totalAmount(), 'USD', true)}})</td>
+                            <td>{{$user->totalOrdersDelivered()}} orders ({{money($user->totalAmountDelivered(), 'USD', true)}})</td>
+                            <td>{{money($user->needPay(), 'USD', true)}}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -120,7 +120,7 @@
                                     <li class="list-group-item">
                                         <div class="row">
                                             <div class="col-sm-4">
-                                                <i class="fa fa-fw fa-money"></i> + <b class="text-primary">{{$trans->value}}</b> <i class="fa fa-dollar"></i>
+                                                <i class="fa fa-fw fa-money"></i> + <b class="text-primary">{{money($trans->value, 'USD', true)}}</b> </i>
                                             </div>
                                             <div class="col-sm-4">
                                                 <span class="text-muted"><i class="fa fa-clock-o fa-fw"></i>{{$trans->created_at->diffForHumans()}}</span>
@@ -137,7 +137,7 @@
                                 @endforeach
 
                             </ul>
-                            (Total: <b class="text-primary">{{$user->transactions->sum('value')}}</b><i class="fa fa-dollar fa-fw"></i>)
+                            (Total: <b class="text-primary">{{money($user->transactions->sum('value'), 'USD', true)}}</b>)
                             <br>
                             {{$histories->links()}}
                         </div>

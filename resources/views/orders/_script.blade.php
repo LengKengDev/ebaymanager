@@ -26,7 +26,7 @@
                 {data: 'last_update', "defaultContent": "<span class='text-danger'>Not set</span>"},
                 {data: 'tracking'},
                 {data: 'status', class: 'status'},
-                {data: 'note'},
+                {data: 'note', name: "note"},
                 {data: 'action', orderable: false, searchable: false},
                 {data: 'email', visible: false},
                 {data: 'number', visible: false}
