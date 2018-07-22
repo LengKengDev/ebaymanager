@@ -15,7 +15,12 @@ class OrdersController extends Controller
         $orders = null;
 
         if ($request->user()->can("views_full")) {
-            $orders = Order::with(["user", "account"])->select();
+            $orders = Order::with(["user", "account"])
+                ->select('orders.id', 'orders.buyer', 'orders.address',
+                    'orders.status', 'orders.price', 'orders.last_update',
+                    'orders.tracking', 'orders.address', 'orders.item', 'orders.email', 'orders.number',
+                    'orders.site', 'orders.paid_on_date', 'orders.note', 'orders.quantity',
+                    'orders.user_id', 'orders.account_id', 'orders.created_at', 'orders.updated_at', 'orders.transaction_id');
         }
         else {
             $orders = $request->user()->orders;

@@ -27,17 +27,17 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::select(['id','name', 'per', 'created_at', 'email']);
+        $users = User::select(['id','name', 'per', 'created_at', 'email', 'note']);
         return DataTables::of($users)
             ->addColumn('action', 'users._action')
             ->addColumn('needPay', function ($user) {
-                return money($user->needPay(), 'USD');
+                return money($user->needPay(), 'USD', true);
             })
             ->addColumn('total', function ($user) {
-                return $user->orders->count(). " orders (".money($user->totalAmount(), "USD").")";
+                return $user->orders->count(). " orders (".money($user->totalAmount(), "USD", true).")";
             })
             ->addColumn('delivered', function ($user) {
-                return $user->totalOrdersDelivered(). " orders (".money($user->totalAmountDelivered(),"USD").")";
+                return $user->totalOrdersDelivered(). " orders (".money($user->totalAmountDelivered(),"USD", true).")";
             })
             ->editColumn('name', 'users._name')
             ->editColumn('created_at', function ($account) {
